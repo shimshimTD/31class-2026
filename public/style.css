@@ -1,0 +1,1078 @@
+/* Paperozi Font Integration */
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+    font-weight: 900;
+    font-display: swap;
+}
+
+:root {
+  --color-brand: #ff7675; /* Cute Pastel Red/Coral */
+  --color-brand-blue: #74b9ff; /* Cute Pastel Blue */
+  --color-brand-purple: #a29bfe; /* Cute Pastel Purple */
+  --color-brand-green: #55efc4; /* Cute Pastel Green */
+  --color-brand-red: #ff7675;
+  
+  --text-primary: #2d3436;
+  --text-secondary: #636e72;
+  --border-color: #dfe6e9;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fbfd;
+  --font-family: 'Paperozi', 'Comic Sans MS', sans-serif;
+  --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 1. Header (Google Fonts Style Header (But Cute)) */
+.g-header {
+  height: 70px;
+  border-bottom: 2px dashed var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-primary);
+  z-index: 100;
+}
+
+.g-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.g-logo {
+  color: var(--color-brand);
+  font-size: 24px;
+}
+
+.g-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.g-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.g-nav-link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.g-nav-link:hover, .g-nav-link.active {
+  color: white;
+  background-color: var(--color-brand-blue);
+}
+
+/* 2. Search & Toolbar (Google Fonts Filter Bar, but cute) */
+.g-toolbar {
+  border-bottom: 2px dashed var(--border-color);
+  padding: 16px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--bg-primary);
+}
+
+.g-search-container {
+  flex-grow: 1;
+  position: relative;
+  min-width: 250px;
+}
+
+.g-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-brand-blue);
+  font-size: 22px;
+}
+
+.g-search-input {
+  width: 100%;
+  height: 52px;
+  border: 3px solid var(--color-brand-blue);
+  border-radius: 26px;
+  padding: 0 16px 0 48px;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 700;
+  outline: none;
+  transition: var(--transition);
+  color: var(--text-primary);
+}
+
+.g-search-input:focus {
+  box-shadow: 0 0 0 4px rgba(116, 185, 255, 0.2);
+}
+
+.g-toolbar-select {
+  height: 44px;
+  border: 2px solid var(--border-color);
+  border-radius: 22px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.g-toolbar-select:hover {
+  border-color: var(--color-brand-blue);
+}
+
+/* 3. Main Dashboard */
+.g-content {
+  padding: 32px 24px;
+  flex-grow: 1;
+}
+
+.g-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* 4. Cute Google Pastel Cards */
+.g-card {
+  border: 3px solid var(--border-color);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+  justify-content: space-between;
+  transition: var(--transition);
+  position: relative;
+  background-color: var(--bg-primary);
+  box-shadow: 0 6px 0px var(--border-color);
+}
+
+.g-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* Colored outlines per card type for cute vibes */
+.routine-hero-card { border-color: var(--color-brand-blue); box-shadow: 0 6px 0px #badc58; }
+.emotion-hero-card { border-color: var(--color-brand); box-shadow: 0 6px 0px #ffb8b8; }
+.question-hero-card { border-color: var(--color-brand-purple); box-shadow: 0 6px 0px #d6a2e8; }
+
+.g-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.g-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.g-card-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.g-card-author {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.g-card-title-icon {
+  font-size: 32px;
+}
+
+.g-card-action-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.g-card-action-btn:hover {
+  color: var(--color-brand);
+}
+
+.g-card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.g-preview-text {
+  font-size: 15px;
+  font-weight: 700;
+  border: 2px dashed var(--color-brand-purple);
+  border-radius: 12px;
+  outline: none;
+  width: 100%;
+  background: #fcfaff;
+  color: var(--text-primary);
+  resize: none;
+  font-family: var(--font-family);
+  margin: 8px 0;
+  padding: 12px;
+  transition: var(--transition);
+}
+
+.g-preview-text:focus {
+  border-color: var(--color-brand-purple);
+  background-color: #ffffff;
+}
+
+.g-preview-text::placeholder {
+  color: #bdc1c6;
+}
+
+/* Variant List & Items (Google Pastel Layout) */
+.g-variant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.g-variant-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border: 2px dashed #f1f3f4;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: var(--bg-primary);
+  transition: var(--transition);
+}
+
+.g-variant-item:hover {
+  background-color: #f6fafe;
+  border-color: var(--color-brand-blue);
+  transform: scale(1.02);
+}
+
+.g-variant-item.checked {
+  background-color: #e3faf2;
+  border-color: var(--color-brand-green);
+}
+
+.g-variant-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.g-variant-tag {
+  font-size: 11px;
+  background-color: #f1f3f4;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.g-variant-item.checked .g-variant-tag {
+  background-color: var(--color-brand-green);
+  color: white;
+}
+
+/* Card Footer */
+.g-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px dashed #f1f3f4;
+  padding-top: 14px;
+  margin-top: auto;
+}
+
+.g-styles-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.g-card-submit-btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  color: white;
+  background: var(--color-brand-blue);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 0px #4b8df8;
+}
+
+.g-card-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0px #4b8df8;
+}
+
+.g-card-submit-btn:disabled {
+  color: #9aa0a6;
+  background-color: #f1f3f4;
+  box-shadow: none !important;
+  cursor: not-allowed;
+}
+
+/* Slider (Carousel) Container for Tablet Portrait Mode */
+.g-slider-viewport {
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.g-slider-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 300%; /* 3 slides */
+}
+
+.g-slide-item {
+  width: 33.333%;
+  flex-shrink: 0;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* Slider Floating Arrow Buttons */
+.g-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.g-slider-arrow:hover {
+  background-color: var(--color-brand-blue);
+  color: white;
+  border-color: var(--color-brand-blue);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.g-slider-arrow.prev {
+  left: 12px;
+}
+
+.g-slider-arrow.next {
+  right: 12px;
+}
+
+/* Indicator dots below slider */
+.g-slider-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--border-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.indicator-dot.active {
+  background-color: var(--color-brand-blue);
+  transform: scale(1.2);
+}
+
+/* Emotion grid inside Google Fonts Card style */
+.g-emotion-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.g-emotion-btn {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 10px 4px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.g-emotion-btn:hover, .g-emotion-btn.selected {
+  border-color: var(--color-brand);
+  background-color: #fff9f9;
+  transform: scale(1.1) rotate(5deg);
+}
+
+.g-emotion-btn span {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+/* Textarea input designed like active code blocks */
+.g-input-field {
+  width: 100%;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  outline: none;
+  resize: none;
+  transition: var(--transition);
+  background: #fdfdfd;
+}
+
+.g-input-field:focus {
+  border-color: var(--color-brand);
+  background: white;
+}
+
+/* Toast (Notification) */
+.g-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #2c2c2c;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: var(--transition);
+  z-index: 1000;
+  border: 1px solid var(--color-brand-green);
+}
+
+.g-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Colspan logic for large screens */
+.g-col-2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .g-col-2 {
+    grid-column: span 1;
+  }
+}
+
+/* Friends Status Cards */
+.g-friend-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.g-friend-emoji {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.g-friend-diary {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border-radius: 4px;
+  padding: 8px 12px;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.g-friend-routines {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.g-friend-routine-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 12px;
+  background-color: #f1f3f4;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.g-friend-routine-badge.active {
+  background-color: #e3faf2;
+  color: #02875b;
+  border-color: #55efc4;
+  box-shadow: 0 2px 4px rgba(85, 239, 196, 0.2);
+}
+
+.g-friend-routine-badge-icon {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+/* Red-themed danger button for Teacher data reset */
+.teacher-reset-btn {
+  background-color: #ffeae9;
+  color: #d63031;
+  border: 1px solid #ff8787;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.teacher-reset-btn:hover {
+  background-color: #d63031;
+  color: white;
+  border-color: #d63031;
+}
+
+/* ==========================================================================
+   Login Screen & Teacher Dashboard Styles
+   ========================================================================== */
+
+/* Header Logout Button */
+.g-logout-btn {
+  background: var(--color-brand);
+  color: white;
+  border: none;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.g-logout-btn:hover {
+  background-color: #0b5cab;
+}
+
+/* Login Modal / Overlay */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 44, 44, 0.3);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.login-card {
+  background: white;
+  padding: 36px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.login-logo {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--color-brand);
+  margin-bottom: 6px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+/* Login Tab Selection */
+.login-tabs {
+  display: flex;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.login-tab {
+  flex: 1;
+  border: none;
+  background: none;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.login-tab.active {
+  background: white;
+  color: var(--color-brand-blue);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Input Fields inside Forms */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group span {
+  position: absolute;
+  left: 12px;
+  color: var(--color-brand-blue);
+  pointer-events: none;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  transition: var(--transition);
+}
+
+.input-group input:focus {
+  border-color: var(--color-brand-blue);
+  box-shadow: 0 0 0 2px rgba(20, 115, 230, 0.15);
+}
+
+.login-submit-btn {
+  background: var(--color-brand-blue);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.login-submit-btn:hover {
+  background-color: #0b5cab;
+}
+
+/* Teacher Dashboard Header */
+.teacher-dashboard-header {
+  margin-bottom: 24px;
+}
+
+.teacher-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.teacher-tab {
+  border: none;
+  background: none;
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.teacher-tab:hover, .teacher-tab.active {
+  background: var(--color-brand-purple);
+  color: white;
+}
+
+/* Teacher Routine Status Table */
+.teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.teacher-table th, .teacher-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.teacher-table th {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 800;
+}
+
+.teacher-table tr:hover {
+  background: #f8fbfe;
+}
+
+.routine-status-check {
+  font-size: 20px;
+  text-align: center;
+}
+
+.status-badge-pct {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 900;
+  display: inline-block;
+}
+
+.status-badge-complete {
+  background-color: #e8f0fe;
+  color: var(--color-brand-blue);
+}
+
+/* Student Question List inside Teacher View */
+.teacher-question-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.teacher-question-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.02);
+  border: 2px solid var(--border-color);
+  border-left: 6px solid var(--color-brand-purple);
+}
+
+.teacher-question-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.teacher-question-student {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.teacher-question-time {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.teacher-question-content {
+  font-size: 14px;
+  font-weight: 700;
+  background: var(--bg-secondary);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.teacher-question-reply {
+  font-size: 13px;
+  color: var(--text-primary);
+  background: #f1f9ff;
+  border: 1px dashed var(--color-brand-blue);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Custom list layout inside student question history */
+.student-q-item {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.student-q-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.student-q-content {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.student-q-reply {
+  color: var(--color-brand-blue);
+  background: #f0f7ff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* --- Teacher Emotion Stats Chart --- */
+.g-stats-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.g-stats-bar-container {
+  display: flex;
+  height: 28px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: #f1f3f4;
+  border: 2px solid var(--border-color);
+  margin-bottom: 16px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.g-stats-bar-segment {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  transition: width 0.5s ease-in-out;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.g-stats-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.g-stats-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.g-stats-legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* --- Confetti Celebrations Animation --- */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background-color: #ffd27d;
+  top: -20px;
+  opacity: 0;
+  animation: confetti-fall 3s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    top: -20px;
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    top: 105vh;
+    opacity: 0.3;
+    transform: translateX(100px) rotate(720deg);
+  }
+}
+
+.confetti-piece:nth-child(even) {
+  animation-name: confetti-fall-alternate;
+}
+
+@keyframes confetti-fall-alternate {
+  0% {
+    top: -20px;
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    top: 105vh;
+    opacity: 0.3;
+    transform: translateX(-100px) rotate(-720deg);
+  }
+}

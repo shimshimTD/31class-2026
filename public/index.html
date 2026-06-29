@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>삼색일반 클래스</title>
+  
+  <!-- Google Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Custom Stylesheet with cache buster -->
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+
+  <!-- 1. Google Fonts Style Header (But Cute) -->
+  <header class="g-header">
+    <div class="g-brand" onclick="window.location.reload();">
+      <span class="material-symbols-outlined g-logo" style="font-size: 28px; color: var(--color-brand);">pets</span>
+      <div class="g-title">삼색일반 클래스</div>
+    </div>
+    <nav class="g-nav" id="mainNav">
+      <a href="#" id="tabDashboard" class="g-nav-link active">오늘의 루틴</a>
+      <a href="#" id="tabFriends" class="g-nav-link">친구들 현황</a>
+    </nav>
+    <div class="g-user-status" id="userStatusArea" style="display: none;">
+      <span id="loggedInUserName" style="font-weight: 700; margin-right: 8px;"></span>
+      <button id="logoutBtn" class="g-logout-btn">로그아웃</button>
+    </div>
+  </header>
+
+  <!-- 2. Google Fonts Style Toolbar (But Cute Name Input) -->
+  <div class="g-toolbar" id="toolbarArea" style="display: none;">
+    <div class="g-search-container">
+      <span class="material-symbols-outlined g-search-icon">person</span>
+      <input type="text" id="studentName" class="g-search-input" readonly placeholder="로그인하면 이름이 입력됩니다.">
+    </div>
+    <select class="g-toolbar-select">
+      <option>3학년 1반</option>
+    </select>
+    <select class="g-toolbar-select">
+      <option>오늘 하루 (Today)</option>
+    </select>
+  </div>
+
+  <!-- Login Modal / Screen Overlay -->
+  <div id="loginOverlay" class="login-overlay">
+    <div class="login-card">
+      <div class="login-logo-container" style="margin-bottom: 12px; display: flex; justify-content: center;">
+        <span class="material-symbols-outlined" style="font-size: 56px; color: var(--color-brand);">pets</span>
+      </div>
+      <h2 class="login-title">삼색일반 클래스</h2>
+      <p class="login-subtitle">오늘도 즐거운 하루를 시작해 볼까요?</p>
+      
+      <div class="login-tabs">
+        <button id="loginTabStudent" class="login-tab active">학생 로그인</button>
+        <button id="loginTabTeacher" class="login-tab">선생님 로그인</button>
+      </div>
+
+      <!-- Student Login Form -->
+      <form id="studentLoginForm" class="login-form">
+        <div class="input-group">
+          <span class="material-symbols-outlined">badge</span>
+          <input type="text" id="loginStudentId" placeholder="학번 (예: 30101)" required>
+        </div>
+        <div class="input-group">
+          <span class="material-symbols-outlined">lock</span>
+          <input type="password" id="loginStudentPin" placeholder="비밀번호 (4자리 번호)" required>
+        </div>
+        <button type="submit" class="login-submit-btn">등교하기</button>
+      </form>
+
+      <!-- Teacher Login Form -->
+      <form id="teacherLoginForm" class="login-form" style="display: none;">
+        <div class="input-group">
+          <span class="material-symbols-outlined">lock</span>
+          <input type="password" id="loginTeacherPin" placeholder="선생님 비밀번호 입력" required>
+        </div>
+        <button type="submit" class="login-submit-btn">교실 들어가기</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Main Dashboard View (Input Forms inside Carousel Slider) -->
+  <main class="g-content" id="dashboardView" style="display: none; position: relative;">
+    
+    <!-- Slider Left and Right Controls -->
+    <button id="sliderPrevBtn" class="g-slider-arrow prev" aria-label="이전 화면">
+      <span class="material-symbols-outlined">arrow_back_ios_new</span>
+    </button>
+    <button id="sliderNextBtn" class="g-slider-arrow next" aria-label="다음 화면">
+      <span class="material-symbols-outlined">arrow_forward_ios</span>
+    </button>
+
+    <!-- Slider Indicator Dots -->
+    <div class="g-slider-indicators" id="sliderIndicators">
+      <span class="indicator-dot active" data-index="0"></span>
+      <span class="indicator-dot" data-index="1"></span>
+      <span class="indicator-dot" data-index="2"></span>
+    </div>
+
+    <!-- Carousel Slider Viewport -->
+    <div class="g-slider-viewport">
+      <div class="g-slider-track" id="sliderTrack">
+        
+        <!-- Slide 1: Routine Checklist (Pastel Blue Card - Hero of student dashboard) -->
+        <div class="g-slide-item">
+          <section class="g-card routine-hero-card">
+            <div class="g-card-header">
+              <div class="g-card-meta">
+                <span class="g-card-title" style="font-size: 22px;">오늘의 아침 루틴</span>
+                <span class="g-card-author">등교한 후 차례대로 스스로 해보아요</span>
+              </div>
+              <span class="material-symbols-outlined g-card-title-icon" style="color: var(--color-brand-blue);">task_alt</span>
+            </div>
+            <div class="g-card-body">
+              <div class="g-variant-list" id="studentRoutineListContainer">
+                <p style="text-align: center; color: var(--text-secondary); padding: 24px;">등교 루틴을 가져오는 중...</p>
+              </div>
+            </div>
+            <div class="g-card-footer">
+              <span class="g-styles-count" id="studentRoutineProgressText">남은 루틴 완료하기</span>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 2: Emotion Diary (Pastel Pink Card) -->
+        <div class="g-slide-item">
+          <section class="g-card emotion-hero-card">
+            <div class="g-card-header">
+              <div class="g-card-meta">
+                <span class="g-card-title">오늘의 내 마음</span>
+                <span class="g-card-author">선생님께 들려주는 나의 기분</span>
+              </div>
+              <span class="material-symbols-outlined g-card-title-icon" style="color: var(--color-brand);">sentiment_satisfied</span>
+            </div>
+            <div class="g-card-body">
+              <div class="g-emotion-grid">
+                <button class="g-emotion-btn" data-emotion="happy">
+                  <span class="material-symbols-outlined" style="font-size: 32px; color: #ff7675;">sentiment_very_satisfied</span>
+                  <span>신나요</span>
+                </button>
+                <button class="g-emotion-btn" data-emotion="normal">
+                  <span class="material-symbols-outlined" style="font-size: 32px; color: #ffeaa7;">sentiment_neutral</span>
+                  <span>보통이에요</span>
+                </button>
+                <button class="g-emotion-btn" data-emotion="sad">
+                  <span class="material-symbols-outlined" style="font-size: 32px; color: #74b9ff;">sentiment_dissatisfied</span>
+                  <span>속상해요</span>
+                </button>
+                <button class="g-emotion-btn" data-emotion="angry">
+                  <span class="material-symbols-outlined" style="font-size: 32px; color: #ff7675;">mood_bad</span>
+                  <span>화나요</span>
+                </button>
+                <button class="g-emotion-btn" data-emotion="sleepy">
+                  <span class="material-symbols-outlined" style="font-size: 32px; color: #a29bfe;">bedtime</span>
+                  <span>졸려요</span>
+                </button>
+              </div>
+              <textarea id="diaryText" class="g-input-field" style="height: 120px;" placeholder="오늘 아침, 어떤 일이 있었나요? 한 줄 일기를 적어보세요..."></textarea>
+            </div>
+            <div class="g-card-footer">
+              <span class="g-styles-count">기분을 하나 고르고 일기를 적어봐요</span>
+              <button id="diarySubmit" class="g-card-submit-btn">일기 보내기</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 3: Question to Teacher (Pastel Purple Card) -->
+        <div class="g-slide-item">
+          <section class="g-card question-hero-card">
+            <div class="g-card-header">
+              <div class="g-card-meta">
+                <span class="g-card-title">선생님께 물어보세요</span>
+                <span class="g-card-author">비밀이 지켜지는 1:1 질문방</span>
+              </div>
+              <span class="material-symbols-outlined g-card-title-icon" style="color: var(--color-brand-purple);">chat</span>
+            </div>
+            <div class="g-card-body">
+              <div class="student-question-split" style="display: flex; flex-direction: column; gap: 16px;">
+                <div>
+                  <textarea id="questionText" class="g-preview-text" style="height: 100px; margin-bottom: 8px;" placeholder="선생님께 하고 싶은 말이나 궁금한 질문을 남겨보세요!"></textarea>
+                  <button id="questionSubmit" class="g-card-submit-btn" style="width: 100%; margin: 0;">질문 보내기</button>
+                </div>
+                <div>
+                  <p style="font-size: 13px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">선생님의 답변 확인</p>
+                  <div id="studentQuestionHistory" style="height: 120px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; background: var(--bg-secondary);">
+                    <p style="color: var(--text-secondary); font-size: 12px; text-align: center; margin-top: 40px;">질문 이력이 없습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="g-card-footer">
+              <span class="g-styles-count">나와 선생님만 볼 수 있어요</span>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- 4. Friends Status View -->
+  <main class="g-content" id="friendsView" style="display: none;">
+    <div class="g-grid" id="friendsGrid">
+      <!-- Dynamically filled with student status cards -->
+      <div style="grid-column: 1 / -1; text-align: center; padding: 48px; color: var(--text-secondary);">
+        <span class="material-symbols-outlined" style="font-size: 48px; margin-bottom: 12px; color: var(--color-brand-blue); animation: wobble 2s infinite;">cloud_sync</span>
+        <p style="font-size: 16px; font-weight: 700;">친구들의 오늘의 소식을 불러오고 있어요...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- 5. Teacher Dashboard View (Only for role: teacher) -->
+  <main class="g-content" id="teacherView" style="display: none;">
+    <div class="teacher-dashboard-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+      <div>
+        <h2 style="font-weight: 900; color: var(--color-brand); margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+          <span class="material-symbols-outlined" style="font-size: 28px; vertical-align: middle;">admin_panel_settings</span>
+          교사용 관리 대시보드
+        </h2>
+        <div class="teacher-tabs" style="margin-bottom: 0;">
+          <button id="tTabRoutines" class="teacher-tab active">
+            <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">assignment</span>
+            오늘 루틴 현황
+          </button>
+          <button id="tTabManage" class="teacher-tab">
+            <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">settings</span>
+            루틴 템플릿 관리
+          </button>
+          <button id="tTabEmotions" class="teacher-tab">
+            <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">favorite</span>
+            오늘의 마음
+          </button>
+          <button id="tTabQuestions" class="teacher-tab">
+            <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 4px;">forum</span>
+            1:1 비밀 질문방
+          </button>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="material-symbols-outlined" style="color: var(--color-brand-blue);">calendar_month</span>
+        <span style="font-size: 14px; font-weight: 800; color: var(--text-secondary);">조회 날짜:</span>
+        <input type="date" id="teacherDateFilter" class="g-toolbar-select" style="width: auto; height: 44px; margin-bottom: 0;">
+      </div>
+    </div>
+
+    <!-- Teacher Routine Tab Content -->
+    <div id="tContentRoutines" class="teacher-tab-content">
+      <div class="g-card" style="width: 100%; max-width: 100%;">
+        <div class="g-card-header">
+          <div class="g-card-meta">
+            <span class="g-card-title">루틴 완료 전체 현황</span>
+            <span class="g-card-author">우리 반 학생들의 아침 등교 미션 수행 상태</span>
+          </div>
+        </div>
+        <div class="g-card-body" style="overflow-x: auto;">
+          <table class="teacher-table">
+            <thead>
+              <tr id="teacherRoutineTableHeaderRow">
+                <th>학번</th>
+                <th>이름</th>
+                <!-- Dynamically populated table headers based on active routine templates -->
+                <th>완료율</th>
+              </tr>
+            </thead>
+            <tbody id="teacherRoutineTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teacher Manage Routines Tab Content -->
+    <div id="tContentManage" class="teacher-tab-content" style="display: none;">
+      <div class="g-card" style="width: 100%; max-width: 100%;">
+        <div class="g-card-header">
+          <div class="g-card-meta">
+            <span class="g-card-title">등교 루틴 구성 관리</span>
+            <span class="g-card-author">학생들이 등교해서 체크할 아침 약속을 동적으로 설정합니다.</span>
+          </div>
+        </div>
+        <div class="g-card-body">
+          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+            <input type="text" id="newRoutineTextInput" class="g-search-input" placeholder="추가할 등교 루틴 텍스트를 입력하세요." style="flex: 1; border: 2px solid var(--border-color); border-radius: 8px; font-weight: 700; padding: 12px 16px;">
+            <button id="addRoutineTemplateBtn" class="g-card-submit-btn" style="margin: 0; background: var(--color-brand-blue);">루틴 추가</button>
+          </div>
+          <p style="font-size: 13px; font-weight: 800; color: var(--text-secondary); margin-bottom: 8px;">현재 설정된 등교 루틴 순서 (위에서부터 학생들에게 순차적으로 노출됩니다)</p>
+          <div id="teacherRoutineTemplateList" class="g-variant-list">
+            <!-- Dynamically populated routine templates with delete button -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teacher Emotions Tab Content -->
+    <div id="tContentEmotions" class="teacher-tab-content" style="display: none;">
+      <!-- Emotion Stats Summary Panel (Live Mini-Chart) -->
+      <div id="teacherEmotionStats" class="g-card" style="min-height: auto; margin-bottom: 24px; padding: 20px; border-color: var(--color-brand); box-shadow: 0 4px 0px #ffe5e5;">
+        <!-- Stats filled dynamically via JS -->
+      </div>
+      
+      <div class="g-grid" id="teacherEmotionsGrid">
+        <!-- Dynamically populated student emotion/diary cards -->
+      </div>
+    </div>
+
+    <!-- Teacher Questions Tab Content -->
+    <div id="tContentQuestions" class="teacher-tab-content" style="display: none;">
+      <div class="teacher-question-list" id="teacherQuestionList">
+        <!-- Dynamically populated question cards -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Teacher Answer Dialog / Modal -->
+  <div id="answerModal" class="login-overlay" style="display: none; z-index: 200;">
+    <div class="login-card" style="max-width: 500px;">
+      <h3 style="font-weight: 800; color: var(--color-brand); margin-bottom: 12px;">💬 질문에 답변 달기</h3>
+      <p id="modalStudentQuestion" style="background: var(--bg-secondary); padding: 12px; border-radius: 8px; font-size: 14px; margin-bottom: 16px; border-left: 4px solid var(--color-brand-purple);"></p>
+      
+      <textarea id="modalAnswerText" class="g-preview-text" placeholder="여기에 따뜻한 답변을 입력해 주세요..." style="height: 120px; margin-bottom: 16px;"></textarea>
+      
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button id="closeAnswerModalBtn" class="g-logout-btn" style="background: var(--border-color); color: var(--text-primary);">취소</button>
+        <button id="submitAnswerBtn" class="g-card-submit-btn" style="margin: 0;">답변 전송</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cute Google Style Toast -->
+  <div id="toast" class="g-toast">
+    <span class="material-symbols-outlined" style="color: #55efc4;">check_circle</span>
+    <span id="toastMsg">성공적으로 보냈습니다!</span>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="/__/firebase/10.8.0/firebase-app-compat.js"></script>
+  <script src="/__/firebase/10.8.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase Auto-Initialization served by Firebase Hosting -->
+  <script src="/__/firebase/init.js"></script>
+
+  <!-- Main JavaScript App -->
+  <script src="app.js"></script>
+</body>
+</html>
