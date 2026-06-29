@@ -2,6 +2,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Check if Firebase is loaded
   if (typeof firebase !== 'undefined') {
+    // Explicit manual configuration for multi-domain support (Firebase Hosting & GitHub Pages)
+    if (firebase.apps.length === 0) {
+      firebase.initializeApp({
+        projectId: "test-3bec0",
+        appId: "1:322521888497:web:866299d63ee18f4a132204",
+        authDomain: "test-3bec0.firebaseapp.com",
+        storageBucket: "test-3bec0.appspot.com"
+      });
+    }
     const db = firebase.firestore();
     
     // UI Elements
